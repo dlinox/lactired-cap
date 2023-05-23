@@ -15,13 +15,19 @@ Route::get('/', function () {
     return Inertia::render('Home');
 })->middleware('auth');
 
+
 Route::get('/login', function () {
     return Inertia::render('Auth/Login');
-})->name('login');
+})->name('login')->middleware('guest');
+
 
 Route::post('/sign-in',  [AuthController::class, 'signIn'])->name('sign-in');
+Route::delete('/logout',  [AuthController::class, 'logout'])->name('logout');
 
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
+    Route::get('', function () {
+        return Inertia::render('Home');
+    });
     Route::resource('areas', AreaController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('tipos', TipoController::class);

@@ -15,6 +15,9 @@
             <v-toolbar-title> <Logo></Logo> </v-toolbar-title>
             <v-spacer></v-spacer>
             <SwitchTheme />
+            <v-btn color="red" icon size="small" @click="router.delete('/logout')">
+                <v-icon>mdi-logout</v-icon>
+            </v-btn>
         </v-app-bar>
 
         <v-main>
@@ -25,11 +28,10 @@
 
 <script setup>
 import { ref } from "vue";
-
 import MainMenu from "../components/MainMenu.vue";
 import SwitchTheme from "../components/SwitchTheme.vue";
 import Logo from "../components/Logo.vue";
-import { usePage } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 const drawer = ref(null);
 const user = computed(() => usePage().props?.auth?.user);

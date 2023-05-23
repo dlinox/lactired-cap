@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
+    
     
     public function signIn(Request $request)
     {
@@ -23,7 +20,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($request->all())) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/admin');
         }
 
         return back()->withErrors([
@@ -31,4 +28,14 @@ class AuthController extends Controller
             'status' => false
         ]);
     }
+
+    public function logout(Request $request){
+
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        //$request->session()->regenerateToken();
+        return redirect('/login');
+
+    }
+
 }

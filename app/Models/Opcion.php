@@ -17,6 +17,13 @@ class Opcion extends Model
         'opci_correcta' => 'boolean',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        //'opci_correcta',
+    ];
+
+
     public function pregunta()
     {
         return $this->belongsTo(Pregunta::class, 'preg_id', 'preg_id');

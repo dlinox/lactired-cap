@@ -21,6 +21,7 @@
         <v-container fluid>
             <v-card>
                 <v-card-item>
+                    
                     <DataTable
                         :headers="headers"
                         :items="recursos"

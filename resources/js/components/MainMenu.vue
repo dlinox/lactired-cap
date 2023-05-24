@@ -6,9 +6,9 @@
             title="Home"
             color="primary"
             :class="
-                router.page.url == '/' ? 'v-list-item--active text-primary' : ''
+                router.page.url == '/admin' ? 'v-list-item--active text-primary' : ''
             "
-             @click="router.get('/')"
+             @click="router.get('/admin')"
         />
 
         <v-list-group value="admin">

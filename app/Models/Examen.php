@@ -18,10 +18,25 @@ class Examen extends Model
         'exam_nota_aprobatoria' => 'integer',
     ];
 
-    protected $with = ['secciones'];
+    public $headers =  [
+        ['text' => "ID", 'value' => "exam_id", 'short' => false, 'order' => 'ASC'],
+        ['text' => "Nombre", 'value' => "exam_nombre", 'short' => false, 'order' => 'ASC'],
+    ];
+
+    
+
+    //protected $with = ['secciones'];
+    protected $withCount = ['secciones'];
 
     public function secciones()
     {
         return $this->hasMany(Seccion::class, 'exam_id', 'exam_id');
     }
+
+    protected $hidden = [
+        'exam_duracion',
+        'exam_nota_aprobatoria',
+        'created_at',
+        'updated_at'
+    ];
 }

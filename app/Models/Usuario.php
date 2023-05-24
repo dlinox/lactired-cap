@@ -6,10 +6,20 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
+
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
+    protected $guard = "usuarios";
+
+    protected $username = 'usua_documento_nro';
+
+    //1164163098A
+
 
     protected $primaryKey = 'usua_id';
 
@@ -30,13 +40,31 @@ class Usuario extends Model
     protected $casts = [
         'usua_estado' => 'boolean',
     ];
- 
+
+    public function getAuthPassword()
+    {
+        return $this->usua_password; // case sensitive
+    }
+
+    public function validateCredentials(array $credentials)
+    {
+        $plain = $credentials['password'];
+        return $this->hasher->check($plain, $this->getAuthPassword());
+    }
+
+
     protected function usuaPassword(): Attribute
     {
         return Attribute::make(
             set: fn ($value) => Hash::make($value),
         );
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->usua_nombre . ' ' . $this->usua_apellido;
+    }
+
 
     public $headers =  [
         ['text' => "ID", 'value' => "usua_id", 'short' => false, 'order' => 'ASC'],
@@ -47,9 +75,4 @@ class Usuario extends Model
         ['text' => "Correo", 'value' => "usua_email", 'short' => false, 'order' => 'ASC'],
         ['text' => "Estado", 'value' => "usua_estado", 'short' => false, 'order' => 'ASC'],
     ];
-
-    public function getFullNameAttribute()
-    {
-        return $this->usua_nombre . ' ' . $this->usua_apellido;
-    }
 }

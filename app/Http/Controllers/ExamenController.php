@@ -10,10 +10,38 @@ use Inertia\Inertia;
 class ExamenController extends Controller
 {
 
-    public function index()
+    protected $examen;
+    public function __construct()
     {
+        $this->examen = new Examen();
+    }
+
+
+    public function index(Request $request)
+    {
+
+        $perPage = $request->input('perPage', 10);
+        $query = Examen::query();
+
+        // Búsqueda por nombre de área
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where('exam_nombre', 'like', '%' . $searchTerm . '%');
+        }
+
+        // Obtener resultados paginados
+        $examenes = $query->paginate($perPage)->appends($request->query());
+
+
         return Inertia::render('Examenes/Index', [
-            'examenes' => Examen::all(),
+            'examenes' => $examenes,
+            'headers' => $this->examen->headers,
+
+            'filters' => [
+
+                'search' => $request->search,
+            ],
+            'perPageOptions' => [10, 25, 50, 100], // Opciones de cantidad de elementos por página
         ]);
     }
 

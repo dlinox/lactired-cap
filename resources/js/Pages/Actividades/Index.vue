@@ -14,7 +14,12 @@
                     </template>
                     <template v-slot:content="{ dialog }">
                         <FormActividad
-                            :select="{ areas: areas, tipos:tipos, examenes: examenes, instructores:instructores }"
+                            :select="{
+                                areas: areas,
+                                tipos: tipos,
+                                examenes: examenes,
+                                instructores: instructores,
+                            }"
                             @on-cancel="dialog"
                         />
                     </template>
@@ -22,8 +27,27 @@
             </template>
         </HeadingPage>
 
-        <v-container>
-            {{ actividades }}
+        <v-container fluid>
+            <v-card>
+                <v-card-item>
+                    <DataTable
+                        :headers="headers"
+                        :items="actividades"
+                        url="/admin/actividades"
+                    >
+                        <template v-slot:header="{ filter }">
+                            <v-row class="py-3" justify="end">
+                                <v-col cols="6">
+                                    <v-text-field
+                                        v-model="filter.search"
+                                        label="Buscar"
+                                    />
+                                </v-col>
+                            </v-row>
+                        </template>
+                    </DataTable>
+                </v-card-item>
+            </v-card>
         </v-container>
     </AdminLayout>
 </template>
@@ -32,9 +56,11 @@ import AdminLayout from "@/layouts/AdminLayout.vue";
 import HeadingPage from "@/components/HeadingPage.vue";
 import BtnDialog from "@/components/BtnDialog.vue";
 import FormActividad from "./components/FormActividad.vue";
+import DataTable from "../../components/DataTable.vue";
 
 const props = defineProps({
-    actividades: Array,
+    headers: Array,
+    actividades: Object,
     areas: Array,
     tipos: Array,
     examenes: Array,

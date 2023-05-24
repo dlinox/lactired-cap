@@ -21,12 +21,33 @@ class ActividadController extends Controller
     public function index(Request $request)
     {
 
+        $perPage = $request->input('perPage', 10);
+        $query = Actividad::query();
+
+        // Búsqueda por nombre de área
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where('acti_tema', 'like', '%' . $searchTerm . '%');
+        }
+
+        // Obtener resultados paginados
+        $actividades = $query->paginate($perPage)->appends($request->query());
+
+
         return Inertia::render('Actividades/Index', [
-            'actividades' => Actividad::all(),
+
+            'headers' => $this->actividad->headers,
+            'actividades' => $actividades,
             'areas' => Area::all(),
             'tipos' => Tipo::all(),
             'examenes' => Examen::all(),
             'instructores' => Instructor::all(),
+
+            'filters' => [
+                'search' => $request->search,
+            ],
+            'perPageOptions' => [10, 25, 50, 100], // Opciones de cantidad de elementos por página
+
         ]);
     }
 

@@ -13,6 +13,15 @@ class Pregunta extends Model
     protected $primaryKey = 'preg_id';
     protected $fillable = ['secc_id', 'preg_enunciado'];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'preg_valor'
+    ];
+
+
+    protected  $with = ['opciones'];
+
     public function seccion()
     {
         return $this->belongsTo(Seccion::class, 'secc_id', 'secc_id');

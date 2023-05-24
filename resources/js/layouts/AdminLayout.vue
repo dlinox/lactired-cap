@@ -1,11 +1,8 @@
 <template>
     <v-app id="inspire">
         <v-navigation-drawer v-model="drawer" theme="dark" border="0">
-            <!-- <v-card class="ma-2 text-secondary" variant="tonal">
-              
+            <!-- <v-card class="ma-2 text-secondary" variant="tonal">              
                 <Logo class="py-5 mx-auto" LogoTheme="dark" :LogoWidth="100"></Logo>
-
-              
             </v-card> -->
             <MainMenu />
         </v-navigation-drawer>
@@ -15,7 +12,12 @@
             <v-toolbar-title> <Logo></Logo> </v-toolbar-title>
             <v-spacer></v-spacer>
             <SwitchTheme />
-            <v-btn color="red" icon size="small" @click="router.delete('/logout')">
+            <v-btn
+                color="red"
+                icon
+                size="small"
+                @click="router.delete('/logout')"
+            >
                 <v-icon>mdi-logout</v-icon>
             </v-btn>
         </v-app-bar>

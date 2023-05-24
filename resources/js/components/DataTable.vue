@@ -17,7 +17,7 @@
                 >
                     <div class="d-flex justify-space-between align-center">
                         <small>{{ item.text.toUpperCase() }} </small>
-                        <v-badge v-if="item.short" :content="1" color="black">
+                        <!-- <v-badge v-if="item.short" :content="1" color="black">
                             <v-btn
                                 :icon="
                                     item.order == 'DESC'
@@ -28,7 +28,7 @@
                                 variant="tonal"
                                 color="gray"
                             />
-                        </v-badge>
+                        </v-badge> -->
                     </div>
                 </th>
                 <th v-if="withAction">Acciones</th>

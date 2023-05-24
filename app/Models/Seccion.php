@@ -18,6 +18,13 @@ class Seccion extends Model
         'secc_nota_aprobatoria' => 'integer',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    protected  $with = ['preguntas', 'recursos'];
+
     public function examen()
     {
         return $this->belongsTo(Examen::class, 'exam_id', 'exam_id');
@@ -32,5 +39,4 @@ class Seccion extends Model
     {
         return $this->hasMany(Recurso::class, 'secc_id', 'secc_id');
     }
-    
 }

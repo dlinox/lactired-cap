@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar  color="transparent">
+    <v-toolbar color="transparent">
         <v-btn icon class="hidden-xs-only">
             <v-icon>mdi-arrow-left</v-icon>
         </v-btn>

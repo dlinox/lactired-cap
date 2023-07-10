@@ -87,7 +87,7 @@
                                         width="100%"
                                         height="350"
                                         :src="
-                                            'https://www.youtube.com/embed' +
+                                            'https://www.youtube.com/embed/' +
                                             seccion.recursos[0].recu_url
                                         "
                                         frameborder="0"

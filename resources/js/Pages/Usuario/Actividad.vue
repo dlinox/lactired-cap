@@ -83,6 +83,14 @@
                                         <strong> {{ aux.secc_nombre }} </strong>
                                     </div>
 
+                                    <iframe
+                                        width="100%"
+                                        height="350"
+                                        src="https://www.youtube.com/embed/YuCZKyAzplE"
+                                        frameborder="0"
+                                        allowfullscreen
+                                    ></iframe>
+
                                     <v-card
                                         class="mb-4 mt-2 px-5"
                                         variant="tonal"
@@ -207,7 +215,7 @@
 </template>
 <script setup>
 import { computed, ref } from "vue";
-import { router, useForm } from "@inertiajs/vue3";
+import { router } from "@inertiajs/vue3";
 import { isRequired } from "@/helpers/validations.js";
 import UsuarioLayout from "@/layouts/UsuarioLayout.vue";
 import Presentacion from "./components/Presentacion.vue";

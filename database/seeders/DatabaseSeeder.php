@@ -19,6 +19,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Usuario::create([
+            'usua_nombre' => 'Juan',
+            'usua_apellido' => 'Mamani Peres',
+            'usua_documento_tipo' => 'DNI',
+            'usua_documento_nro' => '74859632',
+            'usua_email' => 'juan@gmail.com',
+            'usua_password' => 'password',
+            'usua_estado' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => 'password',
+        ]);
+
+
+
         Usuario::factory()->count(10)->create();
         Tipo::factory()->count(10)->create();
         Area::factory()->count(10)->create();

@@ -1,6 +1,6 @@
 {
-  "_webfontloader-54e252df.js": {
-    "file": "assets/webfontloader-54e252df.js",
+  "_webfontloader-67702bf1.js": {
+    "file": "assets/webfontloader-67702bf1.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -28,7 +28,7 @@
     "src": "resources/assets/styles/scss/app.scss"
   },
   "resources/js/app.css": {
-    "file": "assets/app-25107233.css",
+    "file": "assets/app-8d55ebc2.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -39,12 +39,12 @@
       "assets/materialdesignicons-webfont-a58ecb54.ttf"
     ],
     "css": [
-      "assets/app-25107233.css"
+      "assets/app-8d55ebc2.css"
     ],
     "dynamicImports": [
-      "_webfontloader-54e252df.js"
+      "_webfontloader-67702bf1.js"
     ],
-    "file": "assets/app-916d0eb4.js",
+    "file": "assets/app-8620d741.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

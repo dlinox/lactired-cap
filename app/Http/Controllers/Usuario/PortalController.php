@@ -86,7 +86,8 @@ class PortalController extends Controller
                 $errors =  $this->validarRespuesta($request);
 
                 if ($errors > 0) {
-                    return back()->withErrors('Respuesta incorrectas: ' . $errors);
+                    return back()->withErrors(['error' => '--------------- Respuesta incorrectas: ' . $errors, 'details' => 'Estimado usuario,
+                    Hemos revisado sus respuestas y lamentamos informarle que algunas de ellas no son correctas.']);
                 }
             }
 

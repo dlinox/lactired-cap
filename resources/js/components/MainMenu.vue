@@ -6,15 +6,16 @@
             title="Home"
             color="primary"
             :class="
-                router.page.url == '/admin' ? 'v-list-item--active text-primary' : ''
+                router.page.url == '/admin'
+                    ? 'v-list-item--active text-primary'
+                    : ''
             "
-             @click="router.get('/admin')"
+            @click="router.get('/admin')"
         />
 
-        <v-list-group value="admin">
+        <v-list-group value="cap">
             <template v-slot:activator="{ props }">
                 <v-list-item
-                    class="my-1"
                     v-bind="props"
                     prepend-icon="mdi-content-paste                                     "
                     title="Capacitaciones"
@@ -24,7 +25,6 @@
             <v-list-item
                 v-for="(item, index) in menuCapacitacion"
                 :key="index"
-                class="hola my-1"
                 :title="item.title"
                 :value="item.value"
                 color="primary"
@@ -58,7 +58,6 @@
                 :title="item.title"
                 :value="item.value"
                 color="primary"
-                class="my-1"
                 :class="
                     item.to == router.page.url
                         ? 'v-list-item--active text-primary'

@@ -11,6 +11,7 @@ use App\Models\Tipo;
 use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 
 class DatabaseSeeder extends Seeder
 {
@@ -39,11 +40,10 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
         ]);
 
+        $this->call(ActividadSeeder::class);
 
 
         Usuario::factory()->count(10)->create();
-        Tipo::factory()->count(10)->create();
-        Area::factory()->count(10)->create();
         User::factory()->count(1)->create();
         Instructor::factory()->count(10)->create();
     }

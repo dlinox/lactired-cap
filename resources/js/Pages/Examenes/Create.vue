@@ -1,45 +1,45 @@
 <template>
     <AdminLayout>
-        <HeadingPage title="Examen" subtitle="Crear nuevo examen">
+        <HeadingPage title="Examen" subtitle="Crear nuevo">
             <template #actions>
-                <v-btn class="" @click="guardar()"> Guardar </v-btn>
+                <v-btn variant="flat" @click="guardar()"> Guardar </v-btn>
             </template>
         </HeadingPage>
-        <v-container fluid>
+        <v-container fluid class="pt-0">
             <v-card>
-                <v-toolbar variant="tonal" extended>
-                    <v-toolbar-title>
-                        <v-text-field
-                            class="mt-5"
-                            v-model="form.exam_nombre"
-                            label="Nombre del examen"
-                            variant="solo"
-                            :error-messages="form.errors.exam_nombre"
-                        ></v-text-field>
-                    </v-toolbar-title>
-
-                    <v-btn
-                        class="ms-5"
-                        prepend-icon="mdi-plus"
-                        variant="flat"
-                        color="light"
-                        size="large"
-                        @click="agregarSeccion"
-                    >
-                        Sección
-                    </v-btn>
-
-                    <template v-slot:extension>
-                        <v-tabs v-model="tab" align-tabs="title">
-                            <v-tab
-                                v-for="(item, indexSeccion) in form.secciones"
-                                :key="indexSeccion"
-                                :value="indexSeccion"
+                <v-card theme="dark">
+                    <v-row class="pa-4" justify="space-between">
+                        <v-col cols="8" md="9">
+                            <v-text-field
+                                class="w-auto"
+                                v-model="form.exam_nombre"
+                                label="Nombre del examen"
+                                variant="outlined"
+                                :error-messages="form.errors.exam_nombre"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="4" md="3" class="d-flex justify-end">
+                            <v-btn
+                                prepend-icon="mdi-plus"
+                                variant="tonal"
+                                color="light"
+                                @click="agregarSeccion"
                             >
-                                Sección {{ indexSeccion + 1 }}
-                            </v-tab>
-                        </v-tabs>
-                    </template>
+                                Sección
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-card>
+                <v-toolbar theme="dark" variant="tonal" density="compact">
+                    <v-tabs v-model="tab" align-tabs="title">
+                        <v-tab
+                            v-for="(item, indexSeccion) in form.secciones"
+                            :key="indexSeccion"
+                            :value="indexSeccion"
+                        >
+                            Sección {{ indexSeccion + 1 }}
+                        </v-tab>
+                    </v-tabs>
                 </v-toolbar>
 
                 <v-window v-model="tab">
@@ -394,67 +394,17 @@ import { useForm } from "@inertiajs/vue3";
 const tab = ref(null);
 
 const form = useForm({
-    exam_nombre: "Nombre del Examen",
-    exam_duracion: 60,
-    exam_nota_aprobatoria: 70,
+    exam_nombre: null,
+    exam_duracion: 0,
+    exam_nota_aprobatoria: 0,
     secciones: [
         {
-            secc_nombre: "Nombre de la Sección 1",
-            secc_nota_aprobatoria: 60,
-
-            recursos: [
-                {
-                    recu_nombre: "Recurso 1",
-                    recu_descripcion: "Descripcion del recurso 1",
-                    recu_tipo: "VIDEO",
-                    recu_url: "https://www.youtube.com/",
-                    recu_estado: true,
-                },
-                {
-                    recu_nombre: "Recurso 2",
-                    recu_descripcion: "Descripcion del recurso 2",
-                    recu_tipo: "VIDEO",
-                    recu_url: "https://www.youtube.com/",
-                    recu_estado: true,
-                },
-            ],
-
-            preguntas: [
-                {
-                    preg_enunciado: "Enunciado de la Pregunta 1",
-                    opciones: [
-                        {
-                            opci_texto: "Opción 1",
-                            opci_correcta: true,
-                        },
-                        {
-                            opci_texto: "Opción 2",
-                            opci_correcta: false,
-                        },
-                    ],
-                },
-                {
-                    preg_enunciado: "Enunciado de la Pregunta 2",
-                    opciones: [
-                        {
-                            opci_texto: "Opción 1",
-                            opci_correcta: false,
-                        },
-                        {
-                            opci_texto: "Opción 2",
-                            opci_correcta: true,
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            secc_nombre: "Nombre de la Sección 2",
-            secc_nota_aprobatoria: 70,
+            secc_nombre: null,
+            secc_nota_aprobatoria: 0,
             recursos: [],
             preguntas: [
                 {
-                    preg_enunciado: "Enunciado de la Pregunta 1",
+                    preg_enunciado: null,
                     opciones: [
                         {
                             opci_texto: "Opción 1",
@@ -471,35 +421,41 @@ const form = useForm({
     ],
 });
 
-const seccion = [
-    {
-        secc_nombre: "Nombre de la Sección",
-        secc_nota_aprobatoria: 100,
-        recursos: [],
-        preguntas: [
-            {
-                preg_enunciado: "Enunciado de la Pregunta",
-                opciones: [
-                    {
-                        opci_texto: "Opción 1",
-                        opci_correcta: true,
-                    },
-                    {
-                        opci_texto: "Opción 2",
-                        opci_correcta: false,
-                    },
-                    {
-                        opci_texto: "Opción 3",
-                        opci_correcta: false,
-                    },
-                ],
-            },
-        ],
-    },
-];
+const seccion = {
+    secc_nombre: "",
+    secc_nota_aprobatoria: 0,
+    recursos: [],
+    preguntas: [
+        {
+            preg_enunciado: "",
+            opciones: [
+                {
+                    opci_texto: "Opción 1",
+                    opci_correcta: true,
+                },
+            ],
+        },
+    ],
+};
+
+const pregunta = {
+    preg_enunciado: "",
+    opciones: [
+        {
+            opci_texto: "Opción",
+            opci_correcta: true,
+        },
+    ],
+};
+
+const opcion = {
+    opci_texto: "Opción",
+    opci_correcta: false,
+};
 
 const agregarSeccion = () => {
-    form.secciones.push(...seccion);
+    let aux = JSON.parse(JSON.stringify(seccion));
+    form.secciones.push({ ...aux });
     tab.value = form.secciones.length - 1;
 };
 const quitarSeccion = (indexSeccion) => {
@@ -508,23 +464,27 @@ const quitarSeccion = (indexSeccion) => {
 };
 
 const agregarRecurso = (item, indexSeccion) => {
-    form.secciones[indexSeccion].recursos.push(item);
+    let aux = JSON.parse(JSON.stringify(item));
+
+    form.secciones[indexSeccion].recursos.push({...aux});
 };
+
 const quitarRecurso = (indexSeccion, indexRecurso) => {
     form.secciones[indexSeccion].recursos.splice(indexRecurso, 1);
 };
 
 const agregarPregunta = (indexSeccion) => {
-    form.secciones[indexSeccion].preguntas.push(seccion[0].preguntas[0]);
+    let aux = JSON.parse(JSON.stringify(pregunta));
+    form.secciones[indexSeccion].preguntas.push({ ...aux });
 };
 const quitarPregunta = (indexSeccion, indexPregunta) => {
     form.secciones[indexSeccion].preguntas.splice(indexPregunta, 1);
 };
 
 const agregarOpcion = (indexSeccion, indexPregunta) => {
+    let aux = JSON.parse(JSON.stringify(opcion));
     form.secciones[indexSeccion].preguntas[indexPregunta].opciones.push({
-        opci_texto: "Opción",
-        opci_correcta: false,
+        ...aux,
     });
 };
 const quitarOpcion = (indexSeccion, indexPregunta, indexOpcion) => {

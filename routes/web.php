@@ -55,6 +55,10 @@ Route::name('u.')->prefix('u')->group(function () {
 
 
     Route::get('/login',  [App\Http\Controllers\Usuario\Auth\AuthController::class, 'login'])->name('login');
+    Route::get('/register',  [App\Http\Controllers\Usuario\Auth\AuthController::class, 'register'])->name('register');
+    
+    Route::get('/get-empleado',  [App\Http\Controllers\Usuario\Auth\AuthController::class, 'getEmpleado'])->name('get-empleado');
+
     Route::post('/sign-in',  [App\Http\Controllers\Usuario\Auth\AuthController::class, 'signIn'])->name('sign-in');
     Route::delete('/logout',  [App\Http\Controllers\Usuario\Auth\AuthController::class, 'logout'])->name('logout');
 });

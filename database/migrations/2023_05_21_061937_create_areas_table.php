@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('areas', function (Blueprint $table) { //SALUD, SEGURIDAD, ... 
             $table->id('area_id');
             $table->string('area_nombre', 100)->unique();
-            $table->string('area_descripcion', 200)->nullable();
+            $table->string('area_descripcion', 250)->nullable();
             $table->boolean('area_estado')->default(1);
             $table->timestamps();
         });

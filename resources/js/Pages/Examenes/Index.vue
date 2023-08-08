@@ -40,6 +40,6 @@ import HeadingPage from "@/components/HeadingPage.vue";
 import DataTable from "../../components/DataTable.vue";
 const props = defineProps({
     examenes: Object,
-    headers: Array
-})
+    headers: Array,
+});
 </script>

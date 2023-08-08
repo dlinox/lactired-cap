@@ -9,8 +9,8 @@ class Empleado extends Model
 {
     use HasFactory;
 
-    protected $connection = 'lnx_lactired_app';
-    // protected $connection = 'app_lactired';
+    // protected $connection = 'lnx_lactired_app';
+    protected $connection = 'app_lactired';
     protected $primaryKey = "empl_id";
     protected $fillable = [
         'empl_paterno',

@@ -47,6 +47,13 @@
             </v-card-item>
 
             <v-card-item class="pt-0">
+
+                <v-btn class="mb-2" variant="text" block>
+                    <Link href="/u/register">
+                        <small> Registrarme </small>
+                    </Link>
+                </v-btn>
+
                 <v-btn variant="text" block>
                     <Link href="/login">
                         <small> Ingregar como administrador </small>
